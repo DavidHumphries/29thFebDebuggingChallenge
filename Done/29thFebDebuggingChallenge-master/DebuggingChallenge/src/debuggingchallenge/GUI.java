@@ -107,7 +107,6 @@ public class GUI extends javax.swing.JFrame {
 
         if (result % 1 == 0){
             DecimalFormat format = new DecimalFormat("0.#");
-            System.out.println(format.format(result));
             return(format.format(result));
     
         }else{
