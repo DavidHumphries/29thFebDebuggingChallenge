@@ -2,11 +2,15 @@ package debuggingchallenge;
 public class GUI extends javax.swing.JFrame {
 
     //Class variables
-    private String opperand1;
+    
+    // Ref 001 Changed Opperand1 & Opperand2 into double values. changed operartion to string
+    
+    private double opperand1;
     private double opperand2;
     private String opperation;
     private boolean op1Set = false;
     private boolean op2Set = false;
+    
     private String line = "";
     private boolean dotFlag = true;
     private String[] oppChars = {"/","*","-","+"};
@@ -23,7 +27,17 @@ public class GUI extends javax.swing.JFrame {
             }
             if(isInOppChars){ // If it is
                 //Get the value of the current line as the first opperand
+                
+                //ADDED BY ME
+                
                 opperand1 = Double.valueOf(line);
+                System.out.println("Op1 =" + opperand1);
+                System.out.println("Op2 =" + opperand2);
+                System.out.println("Op type= " + opperation);
+                //END OF ADDED BY ME
+                
+                
+                //opperand1 = Double.valueOf(line);
                 op1Set = true;
                 dotFlag = true;
                 //Print out the opperation
@@ -65,31 +79,40 @@ public class GUI extends javax.swing.JFrame {
     
     private String doSum(){
         //Get a result variable
-        int result = 0;
+        
+        // REF 002 changed result into a double value.
+        double result = 0;
         
         //Do the sums 
-        if(opperation.equals("*")){
-            result = opperand1 + opperand2;
-        } else if(opperation.equals("+")){
-            result = opperand1 / opperand2;
-        } else if(opperation.equals("/")){
+        
+        // REF 003 Corrected Operation types  
+ if(opperation.equals("*")){
             result = opperand1 * opperand2;
+        } else if(opperation.equals("+")){
+            result = opperand1 + opperand2;
+        } else if(opperation.equals("/")){
+            result = opperand1 / opperand2;
         } else if(opperation.equals("-")){
             result = opperand1 - opperand2;
         } 
         //If something goes wrong
         else { 
             return "Error: Not a sum";
-        }
+        } 
+
+
+
         //Return the double as a string
         return Double.toString(result);
     }
     
     private void reset(){
         //Reset all the variables
-        this.line = "EROROR";
-        this.opperand1 = 0;
-        this.opperand2 = 0;
+        
+        // REF 007 reset line to empty string value
+        this.line = "";
+        this.opperand1 = 0.0;
+        this.opperand2 = 0.0;
         this.opperation = "";
         this.op1Set = false;
         this.op2Set = false;
@@ -409,8 +432,10 @@ public class GUI extends javax.swing.JFrame {
         addSumPart("8");
     }//GEN-LAST:event_input8ButtonActionPerformed
 
+    
+    // REF 004 Changed button 9 to be assigned to number 9
     private void input9ButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_input9ButtonActionPerformed
-        addSumPart("1");
+        addSumPart("9");
     }//GEN-LAST:event_input9ButtonActionPerformed
 
     private void input4ButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_input4ButtonActionPerformed
@@ -425,8 +450,9 @@ public class GUI extends javax.swing.JFrame {
         addSumPart("6");
     }//GEN-LAST:event_input6ButtonActionPerformed
 
+    // REF 005 Changed button 1 to be assigned to number 1
     private void input1ButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_input1ButtonActionPerformed
-        addSumPart("9");
+        addSumPart("1");
     }//GEN-LAST:event_input1ButtonActionPerformed
 
     private void input2ButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_input2ButtonActionPerformed
