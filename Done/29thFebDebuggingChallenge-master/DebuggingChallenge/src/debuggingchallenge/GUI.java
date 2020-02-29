@@ -12,14 +12,15 @@ public class GUI extends javax.swing.JFrame {
     
     private double opperand1;
     private double opperand2;
+    private double ans = 0;
+    private String ans2 = "0";
     private String opperation;
     private boolean op1Set = false;
     private boolean op2Set = false;
     
     private String line = "";
     private boolean dotFlag = true;
-    private String[] oppChars = {"/","*","-","+"};
-    
+    private String[] oppChars = {"/","*","-","+","^","% of","√"};
     private void addSumPart(String input){
         //If the first opperand has not been set
         if(!op1Set){
@@ -59,8 +60,24 @@ public class GUI extends javax.swing.JFrame {
             //Get the result and print it
             this.outputBox.append(this.doSum());
             reset();
-        } else if(!op2Set){ //If opperand 2 is not set
+        } else if(input.equals("√")){
+            //Print out a new line for the result
+            System.out.println("Here");
+            this.outputBox.append("\n");
+            opperand2 = 0.0;
+            op2Set = true;
+            op1Set = true;
+            dotFlag = true;
+            line = "";
+            //Get the result and print it
+            this.outputBox.append(this.doSum());
+            reset();
+        }
+        
+   
+        else if(!op2Set){ //If opperand 2 is not set
             //Make sure the user hasn't put in a second opperand
+            //REF 009
             boolean isInOppChars = false;
             for(String s : oppChars){
                 if(s.equals(input)){
@@ -92,7 +109,14 @@ public class GUI extends javax.swing.JFrame {
             result = opperand1 / opperand2;
         } else if(opperation.equals("-")){
             result = opperand1 - opperand2;
-        } 
+        } else if(opperation.equals("^")){
+            result = Math.pow(opperand1,opperand2);
+        } else if(opperation.equals("% of")){
+            result = (opperand1 / 100) * opperand2;
+        } else if(opperation.equals("√")){
+            opperand2 = 0.0;
+            result = Math.sqrt(opperand1);
+        }
         //If something goes wrong
         else { 
             return "Error: Not a sum";
@@ -105,11 +129,14 @@ public class GUI extends javax.swing.JFrame {
         
         // REF 008 remove trailing 0
 
+        System.out.println(ans2);
         if (result % 1 == 0){
             DecimalFormat format = new DecimalFormat("0.#");
+            ans2 = (format.format(result));
             return(format.format(result));
     
         }else{
+        ans2 = Double.toString(result);
             return Double.toString(result);
         }
         //return Double.toString(result);
@@ -155,6 +182,10 @@ public class GUI extends javax.swing.JFrame {
         inputMinusButton = new javax.swing.JButton();
         inputPlusButton15 = new javax.swing.JButton();
         ClearOutputButton = new javax.swing.JButton();
+        inputPlusButton16 = new javax.swing.JButton();
+        inputPlusButton17 = new javax.swing.JButton();
+        equalsButton1 = new javax.swing.JButton();
+        inputPlusButton18 = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -337,6 +368,46 @@ public class GUI extends javax.swing.JFrame {
             }
         });
 
+        inputPlusButton16.setFont(new java.awt.Font("Dialog", 1, 36)); // NOI18N
+        inputPlusButton16.setText("^");
+        inputPlusButton16.setToolTipText("7");
+        inputPlusButton16.setPreferredSize(new java.awt.Dimension(70, 70));
+        inputPlusButton16.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                inputPlusButton16ActionPerformed(evt);
+            }
+        });
+
+        inputPlusButton17.setFont(new java.awt.Font("Dialog", 1, 36)); // NOI18N
+        inputPlusButton17.setText("%");
+        inputPlusButton17.setToolTipText("7");
+        inputPlusButton17.setPreferredSize(new java.awt.Dimension(70, 70));
+        inputPlusButton17.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                inputPlusButton17ActionPerformed(evt);
+            }
+        });
+
+        equalsButton1.setFont(new java.awt.Font("Dialog", 1, 18)); // NOI18N
+        equalsButton1.setText("Ans");
+        equalsButton1.setToolTipText("7");
+        equalsButton1.setPreferredSize(new java.awt.Dimension(70, 70));
+        equalsButton1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                equalsButton1ActionPerformed(evt);
+            }
+        });
+
+        inputPlusButton18.setFont(new java.awt.Font("Dialog", 1, 36)); // NOI18N
+        inputPlusButton18.setText("√");
+        inputPlusButton18.setToolTipText("7");
+        inputPlusButton18.setPreferredSize(new java.awt.Dimension(70, 70));
+        inputPlusButton18.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                inputPlusButton18ActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -344,48 +415,57 @@ public class GUI extends javax.swing.JFrame {
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(HeaderLabel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addGroup(layout.createSequentialGroup()
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                            .addComponent(jScrollPane1, javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jScrollPane1)
+                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                        .addGroup(javax.swing.GroupLayout.Alignment.LEADING, layout.createSequentialGroup()
+                            .addComponent(input4Button, javax.swing.GroupLayout.PREFERRED_SIZE, 82, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                            .addComponent(input5Button, javax.swing.GroupLayout.PREFERRED_SIZE, 82, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                            .addComponent(input6Button, javax.swing.GroupLayout.PREFERRED_SIZE, 82, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                            .addComponent(inputMultiplyButton13, javax.swing.GroupLayout.PREFERRED_SIZE, 82, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGroup(javax.swing.GroupLayout.Alignment.LEADING, layout.createSequentialGroup()
+                            .addComponent(input7Button, javax.swing.GroupLayout.PREFERRED_SIZE, 82, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                            .addComponent(input8Button, javax.swing.GroupLayout.PREFERRED_SIZE, 82, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                            .addComponent(input9Button, javax.swing.GroupLayout.PREFERRED_SIZE, 82, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                            .addComponent(inputDivButton12, javax.swing.GroupLayout.PREFERRED_SIZE, 82, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGroup(javax.swing.GroupLayout.Alignment.LEADING, layout.createSequentialGroup()
+                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                                .addGroup(layout.createSequentialGroup()
+                                    .addComponent(inputPlusButton17, javax.swing.GroupLayout.PREFERRED_SIZE, 82, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                    .addComponent(equalsButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 82, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                                    .addGroup(layout.createSequentialGroup()
+                                        .addComponent(input0Button, javax.swing.GroupLayout.PREFERRED_SIZE, 82, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                        .addComponent(inputDotButton, javax.swing.GroupLayout.PREFERRED_SIZE, 82, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                    .addGroup(layout.createSequentialGroup()
+                                        .addComponent(input1Button, javax.swing.GroupLayout.PREFERRED_SIZE, 82, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                        .addComponent(input2Button, javax.swing.GroupLayout.PREFERRED_SIZE, 82, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                             .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                 .addGroup(layout.createSequentialGroup()
-                                    .addComponent(input4Button, javax.swing.GroupLayout.PREFERRED_SIZE, 82, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                    .addComponent(input5Button, javax.swing.GroupLayout.PREFERRED_SIZE, 82, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                    .addComponent(input6Button, javax.swing.GroupLayout.PREFERRED_SIZE, 82, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addGap(18, 18, 18)
-                                    .addComponent(inputMultiplyButton13, javax.swing.GroupLayout.PREFERRED_SIZE, 82, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                    .addComponent(equalsButton, javax.swing.GroupLayout.PREFERRED_SIZE, 82, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                    .addComponent(inputPlusButton18, javax.swing.GroupLayout.PREFERRED_SIZE, 82, javax.swing.GroupLayout.PREFERRED_SIZE))
                                 .addGroup(layout.createSequentialGroup()
-                                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                                        .addGroup(layout.createSequentialGroup()
-                                            .addComponent(input0Button, javax.swing.GroupLayout.PREFERRED_SIZE, 82, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                            .addComponent(inputDotButton, javax.swing.GroupLayout.PREFERRED_SIZE, 82, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                        .addGroup(layout.createSequentialGroup()
-                                            .addComponent(input1Button, javax.swing.GroupLayout.PREFERRED_SIZE, 82, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                            .addComponent(input2Button, javax.swing.GroupLayout.PREFERRED_SIZE, 82, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                                    .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                                     .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                         .addGroup(layout.createSequentialGroup()
-                                            .addComponent(equalsButton, javax.swing.GroupLayout.PREFERRED_SIZE, 82, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                            .addGap(18, 18, 18)
+                                            .addComponent(inputPlusButton16, javax.swing.GroupLayout.PREFERRED_SIZE, 82, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                                             .addComponent(inputPlusButton15, javax.swing.GroupLayout.PREFERRED_SIZE, 82, javax.swing.GroupLayout.PREFERRED_SIZE))
                                         .addGroup(layout.createSequentialGroup()
                                             .addComponent(input3Button, javax.swing.GroupLayout.PREFERRED_SIZE, 82, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                            .addGap(18, 18, 18)
-                                            .addComponent(inputMinusButton, javax.swing.GroupLayout.PREFERRED_SIZE, 82, javax.swing.GroupLayout.PREFERRED_SIZE))))
-                                .addGroup(layout.createSequentialGroup()
-                                    .addComponent(input7Button, javax.swing.GroupLayout.PREFERRED_SIZE, 82, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                    .addComponent(input8Button, javax.swing.GroupLayout.PREFERRED_SIZE, 82, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                    .addComponent(input9Button, javax.swing.GroupLayout.PREFERRED_SIZE, 82, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addGap(18, 18, 18)
-                                    .addComponent(inputDivButton12, javax.swing.GroupLayout.PREFERRED_SIZE, 82, javax.swing.GroupLayout.PREFERRED_SIZE))))
-                        .addGap(0, 0, Short.MAX_VALUE))
+                                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                            .addComponent(inputMinusButton, javax.swing.GroupLayout.PREFERRED_SIZE, 82, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                                    .addGap(0, 0, Short.MAX_VALUE)))))
+                    .addComponent(HeaderLabel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(ClearOutputButton, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addContainerGap())
         );
@@ -418,11 +498,18 @@ public class GUI extends javax.swing.JFrame {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(inputDotButton, javax.swing.GroupLayout.PREFERRED_SIZE, 82, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(input0Button, javax.swing.GroupLayout.PREFERRED_SIZE, 82, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(equalsButton, javax.swing.GroupLayout.PREFERRED_SIZE, 82, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(inputPlusButton15, javax.swing.GroupLayout.PREFERRED_SIZE, 82, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(inputPlusButton15, javax.swing.GroupLayout.PREFERRED_SIZE, 82, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(inputPlusButton16, javax.swing.GroupLayout.PREFERRED_SIZE, 82, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                        .addComponent(inputPlusButton17, javax.swing.GroupLayout.PREFERRED_SIZE, 82, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(equalsButton, javax.swing.GroupLayout.PREFERRED_SIZE, 82, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(inputPlusButton18, javax.swing.GroupLayout.PREFERRED_SIZE, 82, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(equalsButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 82, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(ClearOutputButton, javax.swing.GroupLayout.PREFERRED_SIZE, 45, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addContainerGap())
         );
 
         HeaderLabel.getAccessibleContext().setAccessibleName("HeaderLabel");
@@ -508,10 +595,28 @@ public class GUI extends javax.swing.JFrame {
         this.outputBox.setText("");
     }//GEN-LAST:event_ClearOutputButtonActionPerformed
 
+    private void inputPlusButton16ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_inputPlusButton16ActionPerformed
+        addSumPart("^");
+    }//GEN-LAST:event_inputPlusButton16ActionPerformed
+
+    private void inputPlusButton17ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_inputPlusButton17ActionPerformed
+        addSumPart("% of");
+    }//GEN-LAST:event_inputPlusButton17ActionPerformed
+
+    private void equalsButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_equalsButton1ActionPerformed
+        addSumPart(ans2);
+    }//GEN-LAST:event_equalsButton1ActionPerformed
+
+    private void inputPlusButton18ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_inputPlusButton18ActionPerformed
+        opperand2 = 0.0;
+        addSumPart("√");
+    }//GEN-LAST:event_inputPlusButton18ActionPerformed
+
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton ClearOutputButton;
     private javax.swing.JLabel HeaderLabel;
     private javax.swing.JButton equalsButton;
+    private javax.swing.JButton equalsButton1;
     private javax.swing.JButton input0Button;
     private javax.swing.JButton input1Button;
     private javax.swing.JButton input2Button;
@@ -527,6 +632,9 @@ public class GUI extends javax.swing.JFrame {
     private javax.swing.JButton inputMinusButton;
     private javax.swing.JButton inputMultiplyButton13;
     private javax.swing.JButton inputPlusButton15;
+    private javax.swing.JButton inputPlusButton16;
+    private javax.swing.JButton inputPlusButton17;
+    private javax.swing.JButton inputPlusButton18;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JTextArea outputBox;
     // End of variables declaration//GEN-END:variables
