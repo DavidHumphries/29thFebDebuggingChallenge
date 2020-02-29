@@ -1,0 +1,20 @@
+Hello!
+
+In this folder, there is a netbeans project which contains a simple calculator
+The calculator is only capable of addition, multiplication, subtraction and division
+
+The calculator should only be able to be controlled by the buttons on the form
+The calculator should only output things to the JTextArea
+
+The calculator should only allow input in the following way:
+1) The first opperand should be inputted one character at a time
+2) The operator should be inputted
+3) The second opperand should be inputted one character at a time
+4) The equals button should be pressed (but not shown on the output)
+
+Each input should be typed out on a new line in the JTextArea
+
+Then the result should be outputted
+The result should be expressed as an integer where possible (i.e. no .0)
+
+Good luck!
