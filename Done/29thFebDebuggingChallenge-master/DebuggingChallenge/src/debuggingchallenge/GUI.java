@@ -3,16 +3,25 @@ package debuggingchallenge;
 import java.text.DecimalFormat;
 
 public class GUI extends javax.swing.JFrame {
+   
+    /* A total of 7 changes have been made 
+    All changes made in the debugging task:
+    REF 001 Changed Opperand1 & Opperand2 into double values. changed operartion to string
+    REF 002 changed result into a double value.
+    REF 003 Corrected Operation types 
+    REF 004 Changed button 9 to be assigned to number 9
+    REF 005 Changed button 1 to be assigned to number 1
+    REF 006 reset line to empty string value
+    REF 007 remove trailing 0
+    */
 
-    // A total of 0 ref changes have been made
-    
     //Class variables
     
-    // Ref 001 Changed Opperand1 & Opperand2 into double values. changed operartion to string
     
+    // REF 001 Changed Opperand1 & Opperand2 into double values. changed operartion to string
     private double opperand1;
     private double opperand2;
-    private String ans2 = "0";
+    private String ans = "0";
     private String opperation;
     private boolean op1Set = false;
     private boolean op2Set = false;
@@ -67,7 +76,6 @@ public class GUI extends javax.swing.JFrame {
         }
         else if(!op2Set){ //If opperand 2 is not set
             //Make sure the user hasn't put in a second opperand
-            //REF 009
             boolean isInOppChars = false;
             for(String s : oppChars){
                 if(s.equals(input)){
@@ -116,14 +124,14 @@ public class GUI extends javax.swing.JFrame {
         //Return the double as a string
         
         
-        // REF 008 remove trailing 0
+        // REF 007 remove trailing 0
         if (result % 1 == 0){
             DecimalFormat format = new DecimalFormat("0.#");
-            ans2 = (format.format(result));
+            ans = (format.format(result));
             return(format.format(result));
     
         }else{
-        ans2 = Double.toString(result);
+        ans = Double.toString(result);
             return Double.toString(result);
         }
         //return Double.toString(result);
@@ -132,7 +140,7 @@ public class GUI extends javax.swing.JFrame {
     private void reset(){
         //Reset all the variables
         
-        // REF 007 reset line to empty string value
+        // REF 006 reset line to empty string value
         this.line = "";
         this.opperand1 = 0.0;
         this.opperand2 = 0.0;
@@ -145,6 +153,9 @@ public class GUI extends javax.swing.JFrame {
         //Initualise the components
         initComponents();
     }
+    
+    //This file has been modified by David Humphries
+    
     
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
@@ -189,7 +200,7 @@ public class GUI extends javax.swing.JFrame {
         jScrollPane1.setViewportView(outputBox);
 
         input7Button.setFont(new java.awt.Font("Dialog", 1, 36)); // NOI18N
-        input7Button.setToolTipText("7");
+        input7Button.setToolTipText("Seven");
         input7Button.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED));
         input7Button.setLabel("7");
         input7Button.setPreferredSize(new java.awt.Dimension(70, 70));
@@ -201,7 +212,7 @@ public class GUI extends javax.swing.JFrame {
 
         input8Button.setFont(new java.awt.Font("Dialog", 1, 36)); // NOI18N
         input8Button.setText("8");
-        input8Button.setToolTipText("7");
+        input8Button.setToolTipText("Eight");
         input8Button.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED));
         input8Button.setPreferredSize(new java.awt.Dimension(70, 70));
         input8Button.addActionListener(new java.awt.event.ActionListener() {
@@ -212,7 +223,7 @@ public class GUI extends javax.swing.JFrame {
 
         input9Button.setFont(new java.awt.Font("Dialog", 1, 36)); // NOI18N
         input9Button.setText("9");
-        input9Button.setToolTipText("7");
+        input9Button.setToolTipText("Nine");
         input9Button.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED));
         input9Button.setPreferredSize(new java.awt.Dimension(70, 70));
         input9Button.addActionListener(new java.awt.event.ActionListener() {
@@ -223,7 +234,7 @@ public class GUI extends javax.swing.JFrame {
 
         input4Button.setFont(new java.awt.Font("Dialog", 1, 36)); // NOI18N
         input4Button.setText("4");
-        input4Button.setToolTipText("7");
+        input4Button.setToolTipText("Four");
         input4Button.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED));
         input4Button.setPreferredSize(new java.awt.Dimension(70, 70));
         input4Button.addActionListener(new java.awt.event.ActionListener() {
@@ -234,7 +245,7 @@ public class GUI extends javax.swing.JFrame {
 
         input5Button.setFont(new java.awt.Font("Dialog", 1, 36)); // NOI18N
         input5Button.setText("5");
-        input5Button.setToolTipText("7");
+        input5Button.setToolTipText("Five");
         input5Button.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED));
         input5Button.setPreferredSize(new java.awt.Dimension(70, 70));
         input5Button.addActionListener(new java.awt.event.ActionListener() {
@@ -245,7 +256,7 @@ public class GUI extends javax.swing.JFrame {
 
         input6Button.setFont(new java.awt.Font("Dialog", 1, 36)); // NOI18N
         input6Button.setText("6");
-        input6Button.setToolTipText("7");
+        input6Button.setToolTipText("Six");
         input6Button.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED));
         input6Button.setPreferredSize(new java.awt.Dimension(70, 70));
         input6Button.addActionListener(new java.awt.event.ActionListener() {
@@ -256,7 +267,7 @@ public class GUI extends javax.swing.JFrame {
 
         input1Button.setFont(new java.awt.Font("Dialog", 1, 36)); // NOI18N
         input1Button.setText("1");
-        input1Button.setToolTipText("7");
+        input1Button.setToolTipText("One");
         input1Button.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED));
         input1Button.setPreferredSize(new java.awt.Dimension(70, 70));
         input1Button.addActionListener(new java.awt.event.ActionListener() {
@@ -267,7 +278,7 @@ public class GUI extends javax.swing.JFrame {
 
         input2Button.setFont(new java.awt.Font("Dialog", 1, 36)); // NOI18N
         input2Button.setText("2");
-        input2Button.setToolTipText("7");
+        input2Button.setToolTipText("Two");
         input2Button.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED));
         input2Button.setPreferredSize(new java.awt.Dimension(70, 70));
         input2Button.addActionListener(new java.awt.event.ActionListener() {
@@ -278,7 +289,7 @@ public class GUI extends javax.swing.JFrame {
 
         input3Button.setFont(new java.awt.Font("Dialog", 1, 36)); // NOI18N
         input3Button.setText("3");
-        input3Button.setToolTipText("7");
+        input3Button.setToolTipText("Three");
         input3Button.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED));
         input3Button.setPreferredSize(new java.awt.Dimension(70, 70));
         input3Button.addActionListener(new java.awt.event.ActionListener() {
@@ -289,7 +300,7 @@ public class GUI extends javax.swing.JFrame {
 
         input0Button.setFont(new java.awt.Font("Dialog", 1, 36)); // NOI18N
         input0Button.setText("0");
-        input0Button.setToolTipText("7");
+        input0Button.setToolTipText("Zero");
         input0Button.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED));
         input0Button.setPreferredSize(new java.awt.Dimension(70, 70));
         input0Button.addActionListener(new java.awt.event.ActionListener() {
@@ -300,7 +311,7 @@ public class GUI extends javax.swing.JFrame {
 
         inputDotButton.setFont(new java.awt.Font("Dialog", 1, 36)); // NOI18N
         inputDotButton.setText(".");
-        inputDotButton.setToolTipText("7");
+        inputDotButton.setToolTipText("Decimal point");
         inputDotButton.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED));
         inputDotButton.setPreferredSize(new java.awt.Dimension(70, 70));
         inputDotButton.addActionListener(new java.awt.event.ActionListener() {
@@ -311,7 +322,7 @@ public class GUI extends javax.swing.JFrame {
 
         equalsButton.setFont(new java.awt.Font("Dialog", 1, 36)); // NOI18N
         equalsButton.setText("=");
-        equalsButton.setToolTipText("7");
+        equalsButton.setToolTipText("Equals");
         equalsButton.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED));
         equalsButton.setPreferredSize(new java.awt.Dimension(70, 70));
         equalsButton.addActionListener(new java.awt.event.ActionListener() {
@@ -322,7 +333,7 @@ public class GUI extends javax.swing.JFrame {
 
         inputDivButton12.setFont(new java.awt.Font("Dialog", 1, 36)); // NOI18N
         inputDivButton12.setText("/");
-        inputDivButton12.setToolTipText("7");
+        inputDivButton12.setToolTipText("Divide");
         inputDivButton12.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED));
         inputDivButton12.setPreferredSize(new java.awt.Dimension(70, 70));
         inputDivButton12.addActionListener(new java.awt.event.ActionListener() {
@@ -333,7 +344,7 @@ public class GUI extends javax.swing.JFrame {
 
         inputMultiplyButton13.setFont(new java.awt.Font("Dialog", 1, 36)); // NOI18N
         inputMultiplyButton13.setText("*");
-        inputMultiplyButton13.setToolTipText("7");
+        inputMultiplyButton13.setToolTipText("Multiply");
         inputMultiplyButton13.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED));
         inputMultiplyButton13.setPreferredSize(new java.awt.Dimension(70, 70));
         inputMultiplyButton13.addActionListener(new java.awt.event.ActionListener() {
@@ -344,7 +355,7 @@ public class GUI extends javax.swing.JFrame {
 
         inputMinusButton.setFont(new java.awt.Font("Dialog", 1, 36)); // NOI18N
         inputMinusButton.setText("-");
-        inputMinusButton.setToolTipText("7");
+        inputMinusButton.setToolTipText("Minus");
         inputMinusButton.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED));
         inputMinusButton.setPreferredSize(new java.awt.Dimension(70, 70));
         inputMinusButton.addActionListener(new java.awt.event.ActionListener() {
@@ -355,7 +366,7 @@ public class GUI extends javax.swing.JFrame {
 
         inputPlusButton15.setFont(new java.awt.Font("Dialog", 1, 36)); // NOI18N
         inputPlusButton15.setText("+");
-        inputPlusButton15.setToolTipText("7");
+        inputPlusButton15.setToolTipText("Plus");
         inputPlusButton15.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED));
         inputPlusButton15.setPreferredSize(new java.awt.Dimension(70, 70));
         inputPlusButton15.addActionListener(new java.awt.event.ActionListener() {
@@ -366,7 +377,7 @@ public class GUI extends javax.swing.JFrame {
 
         ClearOutputButton.setFont(new java.awt.Font("Dialog", 1, 36)); // NOI18N
         ClearOutputButton.setText("C");
-        ClearOutputButton.setToolTipText("7");
+        ClearOutputButton.setToolTipText("Clears");
         ClearOutputButton.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED));
         ClearOutputButton.setPreferredSize(new java.awt.Dimension(70, 70));
         ClearOutputButton.addActionListener(new java.awt.event.ActionListener() {
@@ -377,7 +388,7 @@ public class GUI extends javax.swing.JFrame {
 
         inputPlusButton16.setFont(new java.awt.Font("Dialog", 1, 36)); // NOI18N
         inputPlusButton16.setText("^");
-        inputPlusButton16.setToolTipText("7");
+        inputPlusButton16.setToolTipText("Power");
         inputPlusButton16.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED));
         inputPlusButton16.setPreferredSize(new java.awt.Dimension(70, 70));
         inputPlusButton16.addActionListener(new java.awt.event.ActionListener() {
@@ -388,7 +399,7 @@ public class GUI extends javax.swing.JFrame {
 
         inputPlusButton17.setFont(new java.awt.Font("Dialog", 1, 36)); // NOI18N
         inputPlusButton17.setText("%");
-        inputPlusButton17.setToolTipText("7");
+        inputPlusButton17.setToolTipText("Percentage");
         inputPlusButton17.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED));
         inputPlusButton17.setPreferredSize(new java.awt.Dimension(70, 70));
         inputPlusButton17.addActionListener(new java.awt.event.ActionListener() {
@@ -399,7 +410,7 @@ public class GUI extends javax.swing.JFrame {
 
         equalsButton1.setFont(new java.awt.Font("Dialog", 1, 18)); // NOI18N
         equalsButton1.setText("Ans");
-        equalsButton1.setToolTipText("7");
+        equalsButton1.setToolTipText("Previous answer");
         equalsButton1.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED));
         equalsButton1.setMaximumSize(new java.awt.Dimension(27, 53));
         equalsButton1.setMinimumSize(new java.awt.Dimension(27, 53));
@@ -412,7 +423,7 @@ public class GUI extends javax.swing.JFrame {
 
         inputPlusButton18.setFont(new java.awt.Font("Dialog", 1, 36)); // NOI18N
         inputPlusButton18.setText("√");
-        inputPlusButton18.setToolTipText("7");
+        inputPlusButton18.setToolTipText("Root");
         inputPlusButton18.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED));
         inputPlusButton18.setPreferredSize(new java.awt.Dimension(70, 70));
         inputPlusButton18.addActionListener(new java.awt.event.ActionListener() {
@@ -536,7 +547,7 @@ public class GUI extends javax.swing.JFrame {
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
-    
+
     private void input7ButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_input7ButtonActionPerformed
         addSumPart("7");
     }//GEN-LAST:event_input7ButtonActionPerformed
@@ -621,7 +632,7 @@ public class GUI extends javax.swing.JFrame {
     }//GEN-LAST:event_inputPlusButton17ActionPerformed
 
     private void equalsButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_equalsButton1ActionPerformed
-        addSumPart(ans2);
+        addSumPart(ans);
     }//GEN-LAST:event_equalsButton1ActionPerformed
 
     private void inputPlusButton18ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_inputPlusButton18ActionPerformed

@@ -1,2 +1,8 @@
 Added power (^)
 Added Percentage (%)
+Added previous answer (ans)
+Added root ([square root symbol])
+
+
+renamed clear to C
+
